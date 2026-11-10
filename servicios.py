@@ -70,3 +70,25 @@ class AsesoriaEspecializada(Servicio):
 
     def mostrar_detalles(self):
         return f"[Asesoría] {self._nombre} | Área: {self._area_experta} | Tiempo: {self._horas} horas | Tarifa/hora: ${self._precio_base}"
+
+
+
+    # 5. Bloque de prueba con Manejo de Excepciones para garantizar robustez
+if __name__ == "__main__":
+    print("--- SISTEMA DE GESTIÓN DE SERVICIOS ---")
+    try:
+        # Validando entrada de datos numéricos para evitar errores de tipo
+        precio_input = float(input("Ingrese el precio base del servicio: "))
+        capacidad_input = int(input("Ingrese la capacidad de personas: "))
+        
+        # Instanciando una reserva de prueba
+        sala_prueba = ReservaSala("S01", "Sala Principal", precio_input, capacidad_input, True)
+        print("\n--- DETALLES DEL SERVICIO ---")
+        print(sala_prueba.mostrar_detalles())
+        print(f"Costo calculado: ${sala_prueba.calcular_costo(0.0, 0.19)}")
+        
+    except ValueError:
+        print("\n[ERROR DE EXCEPCIÓN]: Debe ingresar valores numéricos válidos para el precio y la capacidad.")
+    except Exception as e:
+        print(f"\n[ERROR INESPERADO]: Ocurrió un fallo en el sistema: {e}")
+        
